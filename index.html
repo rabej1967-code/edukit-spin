@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduKit — Alat Digital untuk Guru & Pentadbir Malaysia</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --biru: #1a56db;
+  --biru-gelap: #1240b0;
+  --biru-cerah: #60a5fa;
+  --hijau: #10b981;
+  --kuning: #f59e0b;
+  --merah: #ef4444;
+  --gelap: #0f172a;
+  --gelap2: #1e293b;
+  --kelabu: #64748b;
+  --border: #e2e8f0;
+  --bg: #f8fafc;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  background: #fff;
+  color: var(--gelap);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  font-size: 20px; font-weight: 800; color: var(--biru);
+  letter-spacing: -0.5px;
+}
+.nav-brand span { color: var(--gelap); }
+.nav-cta {
+  background: var(--biru); color: #fff;
+  padding: 8px 18px; border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--biru-gelap); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+  padding: 80px 24px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(26,86,219,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(16,185,129,0.15) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(26,86,219,0.2); border: 1px solid rgba(96,165,250,0.3);
+  border-radius: 20px; padding: 4px 14px;
+  font-size: 12px; font-weight: 700; color: var(--biru-cerah);
+  letter-spacing: 0.5px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+.hero h1 {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 800; color: #fff;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  max-width: 720px; margin: 0 auto 16px;
+}
+.hero h1 em { color: var(--biru-cerah); font-style: normal; }
+.hero-sub {
+  font-size: clamp(14px, 2vw, 18px);
+  color: #94a3b8;
+  max-width: 560px; margin: 0 auto 36px;
+  line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--biru); color: #fff;
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(26,86,219,0.4);
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--biru-gelap); transform: translateY(-1px); }
+.btn-ghost {
+  background: rgba(255,255,255,0.08); color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.14); }
+.hero-stats {
+  display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+  margin-top: 48px; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.stat { text-align: center; }
+.stat-num { font-size: 28px; font-weight: 800; color: #fff; }
+.stat-lbl { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+/* ── SECTION BASE ── */
+section { padding: 72px 24px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 800; color: var(--biru);
+  text-transform: uppercase; letter-spacing: 1px;
+  background: #eff6ff; border-radius: 4px; padding: 3px 10px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 800; line-height: 1.2;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.section-sub {
+  font-size: 15px; color: var(--kelabu);
+  max-width: 560px; line-height: 1.7;
+}
+
+/* ── MASALAH ── */
+.masalah { background: var(--bg); }
+.masalah-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px; margin-top: 40px;
+}
+.masalah-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.masalah-ico {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: #fee2e2; color: var(--merah);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.masalah-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.masalah-card p { font-size: 12px; color: var(--kelabu); line-height: 1.6; }
+
+/* ── APPS ── */
+.apps { background: #fff; }
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px; margin-top: 40px;
+}
+.app-card {
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px; transition: all 0.2s;
+  cursor: default;
+}
+.app-card:hover { border-color: var(--biru); box-shadow: 0 4px 16px rgba(26,86,219,0.1); }
+.app-icon {
+  width: 38px; height: 38px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 10px;
+}
+.app-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.app-card p { font-size: 11px; color: var(--kelabu); line-height: 1.5; }
+.app-tag {
+  display: inline-block; font-size: 9px; font-weight: 800;
+  border-radius: 4px; padding: 2px 7px; margin-top: 8px;
+  text-transform: uppercase; letter-spacing: 0.4px;
+}
+.tag-guru { background: #eff6ff; color: var(--biru); }
+.tag-pentadbir { background: #f0fdf4; color: #15803d; }
+.tag-gabungan { background: #fdf4ff; color: #7e22ce; }
+
+/* ── PAKEJ (PRICING) ── */
+.pakej { background: var(--bg); }
+.pakej-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px; margin-top: 44px;
+}
+.pakej-card {
+  background: #fff; border: 2px solid var(--border);
+  border-radius: 16px; padding: 28px 24px;
+  position: relative; transition: all 0.2s;
+}
+.pakej-card:hover { border-color: var(--biru); box-shadow: 0 8px 32px rgba(26,86,219,0.12); }
+.pakej-card.featured {
+  border-color: var(--biru);
+  box-shadow: 0 8px 32px rgba(26,86,219,0.15);
+}
+.pakej-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--biru); color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+  padding: 3px 14px; border-radius: 20px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.pakej-nama { font-size: 13px; font-weight: 800; color: var(--kelabu); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.pakej-harga { font-size: 38px; font-weight: 800; color: var(--gelap); letter-spacing: -1px; }
+.pakej-harga span { font-size: 16px; font-weight: 600; color: var(--kelabu); }
+.pakej-asal { font-size: 12px; color: #94a3b8; text-decoration: line-through; margin-bottom: 4px; }
+.pakej-jimat { font-size: 12px; color: var(--hijau); font-weight: 700; margin-bottom: 20px; }
+.pakej-apps { font-size: 12px; color: var(--kelabu); margin-bottom: 16px; }
+.pakej-list { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+.pakej-list li {
+  font-size: 13px; display: flex; align-items: flex-start; gap: 8px;
+}
+.pakej-list li::before {
+  content: '✓'; color: var(--hijau); font-weight: 800;
+  font-size: 12px; flex-shrink: 0; margin-top: 2px;
+}
+.btn-beli {
+  display: block; text-align: center;
+  background: var(--biru); color: #fff;
+  padding: 13px; border-radius: 10px;
+  font-size: 14px; font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(26,86,219,0.3);
+}
+.btn-beli:hover { background: var(--biru-gelap); transform: translateY(-1px); }
+.pakej-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+/* KidSpark */
+.kidspark {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  border-radius: 16px; padding: 32px 28px;
+  margin-top: 24px; color: #fff;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.kidspark-left h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+.kidspark-left p { font-size: 13px; color: rgba(255,255,255,0.75); }
+.kidspark-price { font-size: 28px; font-weight: 800; }
+.kidspark-price span { font-size: 13px; font-weight: 500; opacity: 0.7; }
+.btn-kidspark {
+  background: #fff; color: #7c3aed;
+  padding: 11px 22px; border-radius: 9px;
+  font-size: 13px; font-weight: 800;
+  text-decoration: none; white-space: nowrap;
+  transition: all 0.2s;
+}
+.btn-kidspark:hover { background: #f5f3ff; }
+
+/* ── JAMINAN ── */
+.jaminan { background: #fff; }
+.jaminan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px; margin-top: 40px;
+}
+.jaminan-item { text-align: center; padding: 20px; }
+.jaminan-ico { font-size: 32px; margin-bottom: 12px; }
+.jaminan-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.jaminan-item p { font-size: 12px; color: var(--kelabu); line-height: 1.6; }
+
+/* ── CTA AKHIR ── */
+.cta-akhir {
+  background: var(--gelap);
+  text-align: center; padding: 80px 24px;
+}
+.cta-akhir h2 { font-size: clamp(22px, 3.5vw, 36px); font-weight: 800; color: #fff; margin-bottom: 12px; }
+.cta-akhir p { color: #64748b; margin-bottom: 32px; font-size: 15px; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ── FOOTER ── */
+footer {
+  background: #0f172a; padding: 28px 24px;
+  text-align: center;
+  border-top: 1px solid #1e293b;
+}
+footer p { font-size: 12px; color: #334155; }
+footer a { color: #475569; text-decoration: none; }
+footer a:hover { color: #94a3b8; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .hero { padding: 56px 16px 52px; }
+  section { padding: 52px 16px; }
+  .pakej-grid { grid-template-columns: 1fr; }
+  .kidspark { flex-direction: column; text-align: center; }
+  nav { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-brand">Edu<span>Kit</span></div>
+  <a href="#pakej" class="nav-cta">Lihat Pakej →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="position:relative;z-index:1;">
+    <div class="hero-badge"><div class="hero-badge-dot"></div>17 Aplikasi Digital untuk Sekolah Malaysia</div>
+    <h1>Urus kelas & sekolah<br>dengan <em>lebih pantas</em></h1>
+    <p class="hero-sub">Koleksi aplikasi HTML yang berjalan terus dalam browser — tanpa instalasi, tanpa internet wajib, tanpa kerumitan teknikal.</p>
+    <div class="hero-btns">
+      <a href="#pakej" class="btn-primary">Pilih Pakej Sekarang</a>
+      <a href="#apps" class="btn-ghost">Lihat Semua Apps</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">17</div><div class="stat-lbl">Aplikasi Dalam 1 Platform</div></div>
+      <div class="stat"><div class="stat-num">RM95</div><div class="stat-lbl">Mulai Dari</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Berjalan Dalam Browser</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MASALAH -->
+<section class="masalah">
+  <div class="container">
+    <div class="section-tag">Masalah Guru & Pentadbir</div>
+    <h2 class="section-title">Kerja makin banyak,<br>masa makin sedikit</h2>
+    <p class="section-sub">Guru dan pentadbir sekolah menghadapi cabaran harian yang sama — EduKit hadir untuk meringankan beban ini.</p>
+    <div class="masalah-grid">
+      <div class="masalah-card">
+        <div class="masalah-ico">📊</div>
+        <div><h3>Analisis prestasi pelajar ambil masa lama</h3><p>Terpaksa kira markah secara manual, susah nak kenal pasti pelajar berisiko dengan cepat.</p></div>
+      </div>
+      <div class="masalah-card">
+        <div class="masalah-ico">📅</div>
+        <div><h3>Rancangan pengajaran tiap minggu jadi beban</h3><p>RPH yang sama format tapi kena taip semula setiap kali — bazir masa yang boleh digunakan untuk mengajar.</p></div>
+      </div>
+      <div class="masalah-card">
+        <div class="masalah-ico">📋</div>
+        <div><h3>Rekod kokurikulum berselerak</h3><p>Data kehadiran, markah dan pencapaian pelajar disimpan merata-rata dalam fail berbeza.</p></div>
+      </div>
+      <div class="masalah-card">
+        <div class="masalah-ico">🏫</div>
+        <div><h3>Pentadbiran sekolah makin kompleks</h3><p>Carta organisasi, jadual gantt, agihan tugas — semua makan masa jika buat secara manual.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPS -->
+<section class="apps" id="apps">
+  <div class="container">
+    <div class="section-tag">Senarai Aplikasi</div>
+    <h2 class="section-title">17 aplikasi dalam genggaman anda</h2>
+    <p class="section-sub">Setiap aplikasi direka khas untuk keperluan guru dan pentadbir sekolah Malaysia.</p>
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-icon" style="background:#dbeafe;">📊</div>
+        <h3>SPIn Analytics</h3>
+        <p>Analisis prestasi pelajar mengikut kelas & subjek</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#dcfce7;">📈</div>
+        <h3>Dashboard SPIn Pro</h3>
+        <p>Papan pemuka analitik pelajar peringkat sekolah</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#fef9c3;">📝</div>
+        <h3>RPH Fleksi KSSR Pro</h3>
+        <p>Jana rancangan pengajaran harian dengan mudah</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#fee2e2;">✅</div>
+        <h3>EduAssign Pro</h3>
+        <p>Urus tugasan dan pemantauan pelajar</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#ede9fe;">🏆</div>
+        <h3>GameKelas</h3>
+        <p>Gamifikasi dalam kelas untuk tingkatkan penglibatan pelajar</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#f0fdf4;">🎯</div>
+        <h3>KokurikulumTrack</h3>
+        <p>Pantau aktiviti kokurikulum pelajar secara sistematik</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#fff7ed;">😊</div>
+        <h3>Mood Radar Pro</h3>
+        <p>Pantau mood dan kesejahteraan pelajar dalam kelas</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#fdf4ff;">📋</div>
+        <h3>Senarai Semak Ultimate</h3>
+        <p>Senarai semak tugas dan peperiksaan yang fleksibel</p>
+        <span class="app-tag tag-guru">Pakej Guru</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#dbeafe;">🗂️</div>
+        <h3>OrgChart Pro</h3>
+        <p>Bina carta organisasi sekolah dengan drag & drop</p>
+        <span class="app-tag tag-pentadbir">Pakej Pentadbir</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#dcfce7;">📅</div>
+        <h3>GanttPro</h3>
+        <p>Perancangan projek sekolah dengan carta Gantt interaktif</p>
+        <span class="app-tag tag-pentadbir">Pakej Pentadbir</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#fef9c3;">👥</div>
+        <h3>StaffTrack Pro</h3>
+        <p>Rekod kehadiran dan prestasi staf sekolah</p>
+        <span class="app-tag tag-pentadbir">Pakej Pentadbir</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#fee2e2;">📐</div>
+        <h3>SK@S Pencerapan</h3>
+        <p>Standard 4 pencerapan pengajaran guru</p>
+        <span class="app-tag tag-pentadbir">Pakej Pentadbir</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#ede9fe;">👤</div>
+        <h3>AgihTugas Pro</h3>
+        <p>Agihan tugas guru dan staf sekolah secara adil</p>
+        <span class="app-tag tag-pentadbir">Pakej Pentadbir</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background:#f0fdf4;">📊</div>
+        <h3>H2 Headcount 2.0</h3>
+        <p>Pengurusan bilangan pelajar dan statistik sekolah</p>
+        <span class="app-tag tag-pentadbir">Pakej Pentadbir</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKEJ -->
+<section class="pakej" id="pakej">
+  <div class="container">
+    <div class="section-tag">Harga & Pakej</div>
+    <h2 class="section-title">Pilih pakej yang sesuai</h2>
+    <p class="section-sub">Bayar sekali, guna selama-lamanya. Tiada bayaran berulang, tiada yuran tahunan.</p>
+
+    <div class="pakej-grid">
+      <!-- Pakej Guru -->
+      <div class="pakej-card">
+        <div class="pakej-nama">Pakej Guru</div>
+        <div class="pakej-asal">Nilai asal RM456</div>
+        <div class="pakej-harga">RM95 <span>/ sekali bayar</span></div>
+        <div class="pakej-jimat">✦ Jimat 79%</div>
+        <div class="pakej-apps">10 aplikasi untuk guru</div>
+        <hr class="pakej-divider">
+        <ul class="pakej-list">
+          <li>SPIn Analytics</li>
+          <li>Dashboard SPIn Pro</li>
+          <li>RPH Fleksi KSSR Pro</li>
+          <li>EduAssign Pro</li>
+          <li>GameKelas</li>
+          <li>KokurikulumTrack</li>
+          <li>Mood Radar Pro</li>
+          <li>Senarai Semak Ultimate</li>
+          <li>OrgChart Pro</li>
+          <li>GanttPro</li>
+        </ul>
+        <a href="https://buy.stripe.com/4gM5kC1Gh2i6cLycUV7g400" class="btn-beli" target="_blank">Beli Pakej Guru →</a>
+      </div>
+
+      <!-- Pakej Pentadbir -->
+      <div class="pakej-card">
+        <div class="pakej-nama">Pakej Pentadbir</div>
+        <div class="pakej-asal">Nilai asal RM488</div>
+        <div class="pakej-harga">RM95 <span>/ sekali bayar</span></div>
+        <div class="pakej-jimat">✦ Jimat 81%</div>
+        <div class="pakej-apps">8 aplikasi untuk pentadbir</div>
+        <hr class="pakej-divider">
+        <ul class="pakej-list">
+          <li>OrgChart Pro</li>
+          <li>GanttPro</li>
+          <li>StaffTrack Pro</li>
+          <li>SK@S Pencerapan Standard 4</li>
+          <li>AgihTugas Pro</li>
+          <li>H2 Headcount 2.0</li>
+          <li>SPIn Analytics</li>
+          <li>Dashboard SPIn Pro</li>
+        </ul>
+        <a href="https://buy.stripe.com/bJefZg5Wx6ym8vi6wx7g402" class="btn-beli" target="_blank">Beli Pakej Pentadbir →</a>
+      </div>
+
+      <!-- Pakej Gabungan -->
+      <div class="pakej-card featured">
+        <div class="pakej-badge">🏆 Nilai Terbaik</div>
+        <div class="pakej-nama">Pakej Guru + Pentadbir</div>
+        <div class="pakej-asal">Nilai asal RM944</div>
+        <div class="pakej-harga">RM165 <span>/ sekali bayar</span></div>
+        <div class="pakej-jimat">✦ Jimat 83%</div>
+        <div class="pakej-apps">17 aplikasi unik — semua dalam satu</div>
+        <hr class="pakej-divider">
+        <ul class="pakej-list">
+          <li>Semua 10 apps Pakej Guru</li>
+          <li>Semua 8 apps Pakej Pentadbir</li>
+          <li>17 aplikasi unik kesemuanya</li>
+          <li>Akses penuh seumur hidup</li>
+          <li>Kemas kini percuma</li>
+        </ul>
+        <a href="https://buy.stripe.com/5kQdR8doZbSG7reg777g403" class="btn-beli" target="_blank">Beli Pakej Gabungan →</a>
+      </div>
+    </div>
+
+    <!-- KidSpark -->
+    <div class="kidspark">
+      <div class="kidspark-left">
+        <h3>🌟 Kids Spark — Tambahan untuk Murid</h3>
+        <p>Platform pembelajaran interaktif untuk murid sekolah rendah. Langganan bulanan yang mudah dibatalkan.</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="kidspark-price">RM3 <span>/ bulan</span></div>
+      </div>
+      <a href="https://buy.stripe.com/aFacN41Gh7CqdPCg777g404" class="btn-kidspark" target="_blank">Langgan KidSpark</a>
+    </div>
+  </div>
+</section>
+
+<!-- JAMINAN -->
+<section class="jaminan">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 0;">
+      <div class="section-tag">Kenapa EduKit?</div>
+      <h2 class="section-title">Dibina khas untuk sekolah Malaysia</h2>
+    </div>
+    <div class="jaminan-grid">
+      <div class="jaminan-item">
+        <div class="jaminan-ico">⚡</div>
+        <h3>Serta-merta Guna</h3>
+        <p>Tiada instalasi. Buka browser, terus guna. Berfungsi pada mana-mana komputer atau tablet.</p>
+      </div>
+      <div class="jaminan-item">
+        <div class="jaminan-ico">🔒</div>
+        <h3>Data Selamat</h3>
+        <p>Data disimpan dalam peranti anda sendiri. Tiada data pelajar dihantar ke pelayan luar.</p>
+      </div>
+      <div class="jaminan-item">
+        <div class="jaminan-ico">📧</div>
+        <h3>Akses Terus Selepas Bayar</h3>
+        <p>Kata laluan dihantar ke email anda secara automatik sebaik sahaja pembayaran disahkan.</p>
+      </div>
+      <div class="jaminan-item">
+        <div class="jaminan-ico">🇲🇾</div>
+        <h3>100% Bahasa Malaysia</h3>
+        <p>Antara muka penuh dalam Bahasa Malaysia, sesuai dengan sukatan KSSR dan KSSM.</p>
+      </div>
+      <div class="jaminan-item">
+        <div class="jaminan-ico">💳</div>
+        <h3>Bayaran Selamat</h3>
+        <p>Diproses melalui Stripe — platform pembayaran antarabangsa yang dipercayai.</p>
+      </div>
+      <div class="jaminan-item">
+        <div class="jaminan-ico">♾️</div>
+        <h3>Akses Seumur Hidup</h3>
+        <p>Bayar sekali, guna selama-lamanya. Termasuk semua kemas kini akan datang.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA AKHIR -->
+<section class="cta-akhir">
+  <div class="container">
+    <h2>Mulakan sekarang, jimat masa setiap hari</h2>
+    <p>Sertai guru dan pentadbir sekolah yang telah menggunakan EduKit.</p>
+    <div class="cta-btns">
+      <a href="https://buy.stripe.com/4gM5kC1Gh2i6cLycUV7g400" class="btn-primary" target="_blank">Pakej Guru — RM95</a>
+      <a href="https://buy.stripe.com/bJefZg5Wx6ym8vi6wx7g402" class="btn-primary" target="_blank">Pakej Pentadbir — RM95</a>
+      <a href="https://buy.stripe.com/5kQdR8doZbSG7reg777g403" class="btn-primary" target="_blank">Pakej Gabungan — RM165</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 EduKit · <a href="mailto:noreply@cikgukita.com">noreply@cikgukita.com</a> · apps.cikgukita.com</p>
+</footer>
+
+</body>
+</html>
